@@ -1,4 +1,3 @@
-```markdown
 # Project Name
 
 [Project Name] is a Node.js application that provides a platform for traders to offer their trading services, and for users to subscribe to these services based on a pay-per-win pricing model. This README will guide you through setting up and using the application.
@@ -39,5 +38,3 @@ If you have any questions or want to collaborate, you can reach out to the proje
 - [MongoDB](https://www.mongodb.com/)
 - [Stripe](https://stripe.com/)
 - [Passport.js](http://www.passportjs.org/)
-
-```
