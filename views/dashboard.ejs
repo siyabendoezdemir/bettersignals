@@ -8,5 +8,31 @@
     <h1>Welcome to the Dashboard</h1>
     <p>Hello, <%= user.username %>!</p>
     <a href="/auth/logout">Logout</a>
+
+    <!-- Search for Traders Form -->
+    <h2>Search for Traders</h2>
+    <form action="/traders/search" method="POST">
+      <input type="text" name="searchQuery" placeholder="Enter trader name or keyword">
+      <button type="submit">Search</button>
+    </form>
+
+    <!-- List of Traders -->
+    <h2>Traders</h2>
+    <ul>
+      <% for (let trader of traders) { %>
+        <li>
+          <span><%= trader.username %></span>
+          <% if (user.subscribedTraders.includes(trader._id)) { %>
+            <form action="/user/unsubscribe/<%= trader._id %>" method="POST">
+              <button type="submit">Unsubscribe</button>
+            </form>
+          <% } else { %>
+            <form action="/user/subscribe/<%= trader._id %>" method="POST">
+              <button type="submit">Subscribe</button>
+            </form>
+          <% } %>
+        </li>
+      <% } %>
+    </ul>
   </body>
 </html>

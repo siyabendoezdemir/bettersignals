@@ -8,6 +8,7 @@ router.post('/addUser', UserController.addUser);
 
 // Interactions
 router.post('/subscribe/:traderId', UserController.subscribe);
+router.post('/unsubscribe/:traderId', UserController.unsubscribe);
 
 // Views
 router.get('/dashboard', UserController.getDashboard);
