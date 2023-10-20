@@ -19,6 +19,10 @@
     "express-session": "^1.17.3",
     "mongoose": "^7.6.3",
     "passport": "^0.6.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "stripe": "^14.1.0"
+  },
+  "devDependencies": {
+    "@types/stripe": "^8.0.417"
   }
 }

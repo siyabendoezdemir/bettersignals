@@ -1,0 +1,125 @@
+/* Reset some default styles for better consistency */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Basic styling for the body */
+body {
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar styles */
+.navbar {
+  background-color: #303030;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .logo {
+  font-size: 24px;
+}
+
+.navbar .menu a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+/* Container for the dashboard content */
+.container {
+  display: flex;
+  height: calc(100% - 48px);
+}
+
+/* Left Sidebar styles */
+.sidebar {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  min-width: 200px;
+}
+
+.sidebar h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.sidebar .trader-list {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar .trader-list li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Main Content Area styles */
+.main-content {
+  background-color: #fff;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.main-content .welcome {
+  margin-bottom: 4rem;
+}
+
+.main-content h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* Search for Traders Form styles */
+.main-content h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.main-content form {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.main-content input[type="text"] {
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.main-content button {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+/* List of Traders styles */
+.main-content .trader-list {
+  list-style: none;
+  padding: 0;
+}
+
+.main-content .trader-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.main-content .trader-list li button {
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}

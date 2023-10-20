@@ -60,7 +60,7 @@ exports.getDashboard = async (req, res) => {
       traders = [];
     }
 
-    res.render("dashboard", { user: req.user, traders: traders });
+    res.render("dashboard", { user: req.user, traders: traders, Trader: Trader });
   } catch (error) {
     res.status(500).json({ error: "An error occurred while fetching traders" });
   }
