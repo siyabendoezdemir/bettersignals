@@ -7,6 +7,7 @@ const traderSchema = new mongoose.Schema({
   pricingOptions: [
     {
       pricePerWin: Number,
+      
       // Other pricing-related fields can be added here
     },
   ],

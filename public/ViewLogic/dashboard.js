@@ -17,19 +17,23 @@ $(document).ready(function () {
         // Handle the API response
         if (button.text() === "Subscribe") {
           button.text("Unsubscribe");
-          form.attr("action", url.replace("/subscribe/", "/unsubscribe/"));
+          form.attr(
+            "action",
+            url.replace("/payment/checkout/*", "/unsubscribe/")
+          );
 
           // Add the trader to the subscription list
           const traderName = form.siblings("span:first").text();
-          console.log(traderName);
           addToSubscriptionList(traderName);
         } else {
           button.text("Subscribe");
-          form.attr("action", url.replace("/unsubscribe/", "/subscribe/"));
+          form.attr(
+            "action",
+            url.replace("/unsubscribe/", `/payment/checkout/${trader._id}`)
+          );
 
           // Remove the trader from the subscription list
           const traderName = form.siblings("span:first").text();
-          console.log(traderName);
           removeFromSubscriptionList(traderName);
         }
       },
@@ -52,4 +56,27 @@ $(document).ready(function () {
     // Find and remove the list item corresponding to the trader
     subscriptionList.find(`li:contains(${traderName})`).remove();
   }
+
+  $("button.subscribe-button").click(function (event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const button = $(this); // Get the clicked button
+    const traderId = button.data("trader-id"); // Get the trader ID from the data attribute
+    console.log("At least it's working")
+    // Make an AJAX request to the server to fetch the checkout URL
+    $.ajax({
+      url: "/payment/checkout/" + traderId, // Replace with the correct URL
+      method: "POST",
+      success: function (data) {
+        const { checkoutURL } = data;
+
+        // Redirect the user to the Stripe Checkout URL
+        window.location.href = checkoutURL;
+      },
+      error: function (error) {
+        console.error("Error:", error);
+        // Handle the error, e.g., display a message to the user
+      },
+    });
+  });
 });
