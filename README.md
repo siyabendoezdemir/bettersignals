@@ -1,4 +1,4 @@
-# Project Name
+# BetterSignals
 
 BetterSignals is an application that provides a platform for traders to offer their trading services, and for users to subscribe to these services based on a pay-per-win pricing model.
 
