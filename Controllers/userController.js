@@ -3,6 +3,7 @@ const Trader = require("../models/trader");
 
 const TraderController = require("./traderController");
 const paymentController = require("./paymentController");
+const userController = require("./userController");
 
 const request = require("request");
 
@@ -57,25 +58,15 @@ exports.getDashboard = async (req, res) => {
   const traderId = req.query.traderId;
 
   if (subscriptionSuccess && traderId) {
-    // Subscription success: Perform the POST request to the subscribe endpoint
-    const subscribeReq = {
-      method: "POST",
-      url: `http://localhost:3000/user/subscribe/${traderId}`,
-    };
-
-    request(subscribeReq, (error, response, body) => {
-      if (error) {
-        console.log(
-          "There was an error making a POST request to the subscribe endpoint.: " + error
-        );
-        return res.status(500).json({
-          error: "Error making POST request to the subscribe endpoint.",
-        });
-      }
-
-      // Redirect the user to their dashboard or do other handling as needed
-      res.redirect("/user/dashboard");
-    });
+    // Subscription success: Perform the request to the subscribe endpoint
+    try {
+      await this.subscribe(req, res, traderId);
+    } catch (error) {
+      console.error("Error subscribing:", error);
+      return res.status(500).json({
+        error: "An error occurred while subscribing to the trader",
+      });
+    }
   } else {
     try {
       // Fetch the list of traders
@@ -100,16 +91,14 @@ exports.getDashboard = async (req, res) => {
 };
 
 exports.subscribe = async (req, res) => {
-  console.log(req.user);
 
   if (!req.isAuthenticated()) {
     return res.status(401).json({ error: "Unauthorized" });
   }
-  console.log("User is authenticated");
 
   const user = req.user;
   const userId = req.user._id; // Get the user's ID
-  const traderId = req.params.traderId; // Get the trader's ID
+  const traderId = req.query.traderId; // Get the trader's ID
 
   try {
     // Check if the trader exists
@@ -136,10 +125,7 @@ exports.subscribe = async (req, res) => {
     trader.subscribers.push(userId);
     await trader.save();
 
-    res.status(200).json({
-      message:
-        "Subscribed to the trader successfully. You can now go back to your Dashboard",
-    });
+    res.redirect('/user/dashboard');
   } catch (error) {
     console.error(error);
     res
